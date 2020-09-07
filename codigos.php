@@ -8,7 +8,7 @@
 	<!-- CABECERA -->
 	<?php 
 
- 	require_once 'plantilla.php';
+ 	require_once 'includes/plantilla.php';
 
 	?>
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -20,7 +20,8 @@
 
 
 <?php
-	//require 'modalAreas.php';
-	//require_once 'footer.php'; 
+
+	require 'modales/modalAgregarCodigo.php';
+	require_once 'includes/footer.php'; 
 
 ?>

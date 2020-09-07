@@ -97,19 +97,10 @@
       </li>
 
 
-      <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Enfermeras</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="Enfermeras.php">Ver Enfermeras</a>
-            <a class="collapse-item" href="index.php">Registrar Enfermera</a>
-          </div>
-        </div>
+          <a class="nav-link" href="Enfermeras.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Enfermeras</span></a>
       </li>
 
       <!-- Divider -->
@@ -117,7 +108,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        XXXXXXX  
+        HISTORIAL  
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->

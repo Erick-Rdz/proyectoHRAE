@@ -8,7 +8,7 @@
 	<!-- CABECERA -->
 	<?php 
 
- 	include 'plantilla.php';
+ 	include 'includes/plantilla.php';
 
 	?>
 
@@ -306,4 +306,6 @@
             </div>
           </div>
 
-<?= require_once 'footer.php'; ?>
+<?php
+require_once 'includes/footer.php'; 
+?>
