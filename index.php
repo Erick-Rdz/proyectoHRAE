@@ -8,7 +8,7 @@
 	<!-- CABECERA -->
 	<?php 
 
- 	include 'includes/plantilla.php';
+ 	  require_once 'includes/plantilla.php';
 
 	?>
 
@@ -27,8 +27,10 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Enfermeras Registradas</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">260</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Enfermeras Registradas</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo getTotalEnfermeras($conexion)?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -45,7 +47,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Incidencias Este Mes:</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo getNumeroIncidencias($conexion)?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -64,7 +67,8 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Mes Anterior</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">350</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                            <?php echo getNumeroIncidenciasMesAnterior($conexion); ?></div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -88,7 +92,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Areas registradas</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">58</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php echo getTotalAreas($conexion); ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>

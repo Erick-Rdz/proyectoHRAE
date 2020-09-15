@@ -1,3 +1,7 @@
+<?php 
+  require_once 'conexion.php';
+  require_once 'includes/funciones.php';
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +22,9 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <script src="js/funciones.js"></script>
+  <link rel="stylesheet" type="text/css" href="iziToast/iziToast-master/dist/css/iziToast.css">
+  <script src="iziToast/iziToast-master/dist/js/iziToast.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -73,7 +80,7 @@
       </li>
       -->
       <li class="nav-item">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="registrarIncidencia.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Registrar Incidencia</span></a>
       </li>
@@ -87,7 +94,7 @@
       <li class="nav-item">
         <a class="nav-link" href="codigos.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Codigos</span></a>
+          <span>Códigos</span></a>
       </li>
 
       <li class="nav-item">
@@ -97,8 +104,8 @@
       </li>
 
 
-      <li class="nav-item">
-          <a class="nav-link" href="Enfermeras.php">
+        <li class="nav-item">
+        <a class="nav-link" href="Enfermeras.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Enfermeras</span></a>
       </li>
@@ -145,7 +152,8 @@
             <a class="collapse-item" href="index.php">Incidencias Por Mes</a>
             <a class="collapse-item" href="index.php">Incidencias Por Area</a>
             <a class="collapse-item" href="index.php">Incidencias Por Enfermera</a>
-            <a class="collapse-item" href="index.php">Incidencias Por Turno</a>
+            <a class="collapse-item" href="index.php">Incidencias Por Turno</a>         <a class="collapse-item" href="index.php">Incidencias Año Individual</a>
+
           </div>
         </div>
 

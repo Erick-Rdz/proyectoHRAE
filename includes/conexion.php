@@ -4,7 +4,7 @@
 	$server = "localhost";
 	$user = "root";
 	$password = "";
-	$database = "blog";
+	$database = "hrae";
 	
 	$conexion = mysqli_connect($server,$user,$password,$database);
 
@@ -12,4 +12,5 @@
 
 	if (!isset($_SESSION))
 	session_start();
+
 ?>
