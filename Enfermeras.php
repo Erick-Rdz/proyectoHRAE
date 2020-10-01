@@ -26,10 +26,10 @@ require_once 'includes/plantilla.php';
                       <th>Codigo</th>
                       <th>Nombre</th>
                       <th>Turno</th>
-                      <th>Horario</th>
-                      <th>Area</th>
-                      <th>Dependencia</th>
+                      <th>Fecha Nacimiento</th>                      
+                      <th>Sexo</th>
                       <th>Fecha Ingreso</th>
+                      <th>Area</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -42,7 +42,6 @@ require_once 'includes/plantilla.php';
           </div>
 
 
-<script src="js/functions.js"></script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
 

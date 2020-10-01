@@ -12,7 +12,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="agregarArea.php">
+        <form>
           <label for="nombre">Nombre</label>
           <input type="text" name="nombre" id="nombreArea" class="form-control input-sm"> 
         </form>

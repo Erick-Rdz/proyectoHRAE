@@ -34,7 +34,6 @@ require_once 'includes/plantilla.php';
         </table>
     </div>
 
-<script src="js/functions.js"></script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
 

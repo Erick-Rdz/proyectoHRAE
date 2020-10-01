@@ -27,12 +27,11 @@ function agregarArea(){
             title: 'Error',
             message: 'Existen campos incorrectos'
         });
-	}
+}
 
 }
 
 function agregarCatalago(){
-
     var nombre = document.getElementById('nombreCatalago').value;
     cadena = "nombre="+nombre;
 
@@ -286,29 +285,41 @@ function cargarDataCodigo(data) {
 
 //CARGA DE LOS DATOS EN EL MODAL
 function cargarDataCatalogo(data) {
-    alert(data);
     let dataCatalago = data.split('||');
     document.getElementById('idCatalogo_UP').value = dataCatalago[0];
     document.getElementById('nombreCatalago_UP').value = dataCatalago[1];
 }
 
+//CARGA DE LOS DATOS EN EL MODAL
+function cargarDataEnfermera(data) {
+    //ejemplo: 15||1||AMO2035 ||ERICK RODRIGUEZ||Vespertino||2020-09-01||Seleccionar..||2020-09-01||3||COVID 2
+    let dataCodigo = data.split('||');
+    document.getElementById('idEnfermera_UP').value = dataCodigo[0];
+    document.getElementById('idcodigoEnfermera_UP').value = dataCodigo[1];
+    document.getElementById('nombreEnfermera_UP').value = dataCodigo[3];
+    document.getElementById('turno_UP').value = dataCodigo[4];
+    document.getElementById("fechaNa_UP").value=dataCodigo[5];
+    document.getElementById('sexo_UP').value = dataCodigo[6];
+    document.getElementById('fechaIngreso_UP').value = dataCodigo[7];
+    document.getElementById('area_UP').value = dataCodigo[8];
+}
 
 
 function updateCodigo(){
-    let idCodigo = document.getElementById('idCodigo_UP').value;
-    let nombreCodigo = document.getElementById('nombreCodigo_UP').value;
+    let idCatalago = document.getElementById('idCodigo_UP').value;
+    let nombreCatalago = document.getElementById('nombreCodigo_UP').value;
     let descripcion = document.getElementById('descCodigo_UP').value;
 
         //VALIDACION NO NUMBER NO NULL
-        if (idCodigo=='' || nombreCodigo=='' || !isNaN(nombreCodigo) || !isNaN(descripcion)){
+        if (idCatalago=='' || nombreCatalago=='' || !isNaN(nombreCatalago) || !isNaN(descripcion)){
                 iziToast.error({
                 title: 'Error',
                 message: 'Existen campos incorrectos'
              });
              return;
         }
-    let cadena = "id=" + idCodigo +
-        "&nombre=" + nombreCodigo+
+    let cadena = "id=" + idCatalago +
+        "&nombre=" + nombreCatalago+
         "&descripcion="+descripcion;
 
     $.ajax({
@@ -323,7 +334,6 @@ function updateCodigo(){
             });
         },
         error: function (r) {
-            alert(r);
             iziToast.error({
                 title: 'Error',
                 message: 'Hubo un problema al editar el codigo'
@@ -334,41 +344,165 @@ function updateCodigo(){
 
 
 function updateCatalago(){
-    let idCodigo = document.getElementById('idCodigo_UP').value;
-    let nombreCodigo = document.getElementById('nombreCodigo_UP').value;
-    let descripcion = document.getElementById('descCodigo_UP').value;
+    let idCatalago = document.getElementById('idCatalogo_UP').value;
+    let nombreCatalago = document.getElementById('nombreCatalago_UP').value;
 
-        //VALIDACION NO NUMBER NO NULL
-        if (idCodigo=='' || nombreCodigo=='' || !isNaN(nombreCodigo) || !isNaN(descripcion)){
-                iziToast.error({
-                title: 'Error',
-                message: 'Existen campos incorrectos'
-             });
-             return;
-        }
-    let cadena = "id=" + idCodigo +
-        "&nombre=" + nombreCodigo+
-        "&descripcion="+descripcion;
+
+    //VALIDACION NO NUMBER NO NULL
+    if (idCatalago=='' || nombreCatalago=='' || !isNaN(nombreCatalago)){
+            iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+         });
+         return;
+    }
+    let cadena = "id=" + idCatalago +
+        "&nombre=" + nombreCatalago;
 
     $.ajax({
         type: "POST",
-        url: "controllers/updateCodigo.php",
+        url: "controllers/updateIncidenciaCatalago.php",
         data: cadena,
         success: function (r) {
-            loadlistCodigos();
+            loadListCatalago();
             iziToast.success({
                 title: 'Bien',
-                message: 'Codigo actualizado correctamente'
+                message: 'Catalago actualizado correctamente'
             });
         },
         error: function (r) {
-            alert(r);
             iziToast.error({
                 title: 'Error',
-                message: 'Hubo un problema al editar el codigo'
+                message: 'Hubo un problema al editar el catalago'
             });
         }
     });
 }
 
 
+function agregarEnfermera(){
+    var codigo = document.getElementById('codigoEnfermera').value;
+    var nombre = document.getElementById('nombreEnfermera').value;
+    var fechaNa = document.getElementById('fechaNa').value;
+    var sexo = document.getElementById('sexo').value;
+    var turno = document.getElementById('turno').value;
+    var area = document.getElementById('area').value;
+    var fechaIngreso = document.getElementById('fechaIngreso').value;
+
+    cadena = "codigo="+codigo+
+            "&nombre=" +nombre+
+            "&fechaNa="+fechaNa+
+            "&sexo="+sexo+
+            "&turno="+turno+
+            "&area="+area+
+            "&fechaIngreso="+fechaIngreso;
+
+    if (codigo!='' && nombre!='' & isNaN(nombre)
+     && fechaNa!="" && sexo!='' && turno!='' && area!='' && fechaIngreso!=''){
+        $.ajax({
+        type:"POST",
+        url:"controllers/addEnfermera.php",
+        data:cadena,
+        success:function(r){
+            if (r==1){
+                    iziToast.success({
+                    title: 'Bien',
+                    message: 'Enfermera Agregada correctamente'
+                });
+                  loadListEnfermeras();
+            }else{
+                iziToast.error({
+                title: 'Error',
+                message: 'Error al insertar Enfermera'
+                });
+            }
+        }
+    })
+    }else{
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+
+    }
+
+}
+
+
+function eliminarEnfermera(id){
+    document.getElementById('eliminarBtn').onclick = () => {
+        cadena = "id=" + id;
+        $.ajax({
+            type: "POST",
+            url: "controllers/deleteEnfermera.php",
+            data: cadena,
+            success: function (r) {
+                loadListEnfermeras();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Enfermera eliminada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al eliminar el registro'
+                });
+            }
+        });
+    }
+}
+
+function updateEnfermera(){
+
+    var idEnfermera=  document.getElementById('idEnfermera_UP').value;
+    var codigo = document.getElementById('idcodigoEnfermera_UP').value;
+    var nombre = document.getElementById('nombreEnfermera_UP').value;
+    var fechaNa = document.getElementById('fechaNa_UP').value;
+    var sexo = document.getElementById('sexo_UP').value;
+    var turno = document.getElementById('turno_UP').value;
+    var area = document.getElementById('area_UP').value;
+    var fechaIngreso = document.getElementById('fechaIngreso_UP').value;
+
+
+    //VALIDACION NO NUMBER NO NULL
+/*   if (codigo!='' && nombre!='' & isNaN(nombre)
+     && fechaNa!="" && sexo!='' && turno!='' && area!='' && fechaIngreso!=''){
+            iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+         });
+         return;
+    }
+*/
+    var cadena ="idEnfermera="+idEnfermera+
+            "&codigo="+codigo+
+            "&nombre=" +nombre+
+            "&fechaNa="+fechaNa+
+            "&sexo="+sexo+
+            "&turno="+turno+
+            "&area="+area+
+            "&fechaIngreso="+fechaIngreso;
+
+
+    $.ajax({
+        type: "POST",
+        url: "controllers/updateEnfermera.php",
+        data: cadena,
+        success: function (r) {
+            loadListEnfermeras();
+            iziToast.success({
+                title: 'Bien',
+                message: 'Registro actualizado correctamente'
+            });
+        },
+        error: function (r) {
+            iziToast.error({
+                title: 'Error',
+                message: 'Hubo un problema al editar el registro'
+            });
+        }
+
+    });
+    
+}

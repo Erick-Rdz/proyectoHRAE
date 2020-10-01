@@ -19,7 +19,7 @@
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-primary" data-dismiss="modal" onclick="updateCatalago();">Guardar</button>
+        <button class="btn btn-warning" data-dismiss="modal" onclick="updateCatalago();">Guardar</button>
       </div>
     </div>
   </div>
