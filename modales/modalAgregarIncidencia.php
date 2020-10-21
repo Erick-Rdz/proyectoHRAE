@@ -12,8 +12,14 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="form-group">
           <label for="">Nombre</label>
-          <input type="text" name="" class="form-control input-sm" id="nombreCatalago">
+          <input type="text" name="" class="form-control" id="nombreCatalago">
+          <label for="programada">Programada</label><br>
+          <input type="checkbox" name="programada" value="SI" class="">SI
+          <input type="checkbox" name="programada" value="NO" class="">NO
+          </div>
+
         </form>
       </div>
       <div class="modal-footer justify-content-center">

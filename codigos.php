@@ -37,7 +37,6 @@ require_once 'includes/plantilla.php';
 </div>
 
 
-<script src="js/functions.js"></script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
 

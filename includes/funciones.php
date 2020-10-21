@@ -1,5 +1,19 @@
 <?php
 
+function graficaIncidenciasMesActual($conexion){
+	$sql = " SELECT c.nombre AS 'NOMBRE', COUNT(i.id) AS NUMERO FROM incidencias i INNER JOIN catalagoincidencias c ON c.id=i.idIncidencia GROUP BY c.id";
+
+	$resultados = mysqli_query($conexion, $sql);
+	//$labels = mysqli_fetch_array($resultados);
+  	$i=0;
+	$data="";
+	while ($row = mysqli_fetch_assoc($resultados)) {
+		if ($i==0) {
+			$data .= $row['NOMBRE'] .'||'.$row['NUMERO'].'||';     
+		}
+	}
+		return $data;
+}
 
 
 function getCodigos($conexion){
@@ -34,12 +48,11 @@ function getCatalagoIncidencias($conexion){
 
 
 function getEnfermeras($conexion){
-		$sql = "SELECT e.id,c.nombre as 'codigo',e.nombre,e.turno,CONCAT(e.horaEntrada,' || ',e.horaSalida)as horario,a.nombre as 'area',e.fechaIngreso from area a INNER JOIN enfermera e ON e.area = a.id INNER JOIN codigo c on c.id = e.codigo ";
-
-		$codigos = mysqli_query($conexion, $sql);
+		$sql = "SELECT * FROM Enfermera";
+		$Enfermeras = mysqli_query($conexion, $sql);
 		$res = array();
-		if ($codigos && mysqli_num_rows($codigos)>=1){
-			$res = $codigos;
+		if ($Enfermeras && mysqli_num_rows($Enfermeras)>=1){
+			$res = $Enfermeras;
 		}
 		return $res;
 }
@@ -50,17 +63,15 @@ function getTotalEnfermeras($conexion){
 	return $res;
 }
 
-function getNumeroIncidencias($conexion){
-	$sql = "SELECT * FROM incidencias 
-        WHERE fecha = YEAR(CURRENT_DATE()) 
-        AND fecha  = MONTH(CURRENT_DATE())";
+function getNumeroIncidenciasMesActual($conexion){
+	$sql = "SELECT * FROM incidencias WHERE YEAR(fecha) = YEAR(CURRENT_DATE()) AND MONTH(fecha) = MONTH(CURRENT_DATE()) ";
+        
 	$res = mysqli_num_rows(mysqli_query($conexion, $sql));
 	return $res;
 }
 function getNumeroIncidenciasMesAnterior($conexion){
-	$sql = "SELECT * FROM incidencias 
-        WHERE fecha = YEAR(CURRENT_DATE()) 
-        AND fecha  = MONTH(CURRENT_DATE())";
+	$sql = "SELECT * FROM incidencias WHERE YEAR(fecha) = YEAR(CURRENT_DATE()) AND MONTH(fecha) = (MONTH(CURRENT_DATE())-1) ";
+
 	$res = mysqli_num_rows(mysqli_query($conexion, $sql));
 	return $res;
 }

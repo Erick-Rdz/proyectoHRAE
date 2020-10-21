@@ -14,7 +14,7 @@
       <div class="modal-body">
         <form>
           <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" id="nombreArea" class="form-control input-sm"> 
+          <input type="text" name="nombre" id="nombreArea" class="form-control input-sm" required> 
         </form>
       </div>
       <div class="modal-footer justify-content-center">

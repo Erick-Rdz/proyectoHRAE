@@ -31,9 +31,10 @@ require_once 'includes/plantilla.php';
                     <!-- LISTADO DE AREAS -->
                 </tbody>
             </div>
-        </table>
+              </table>
+           </div>
+        </div>
     </div>
-
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
 

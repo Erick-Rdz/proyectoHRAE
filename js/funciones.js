@@ -109,7 +109,31 @@ function loadListAreas(){
 
      xhr.open('GET', 'components/listarAreas.php', true);
      xhr.send();
+}
 
+function loadListIncidencias(){
+    var mes = document.getElementById('mesFiltro').value;
+    var year = document.getElementById('yearFiltro').value;
+
+    if (year!=""){
+        if (isNaN(year)) {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'El año no es valido'
+                });
+            return;
+        }
+    }
+
+     div = document.getElementById('listadoIncidencias');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarIncidencias.php?Mes='+mes+'&Year='+year, true);
+     xhr.send();
 }
 
 
@@ -190,7 +214,7 @@ function eliminarCodigo(id){
                 loadlistCodigos();
                 iziToast.success({
                     title: 'Bien',
-                    message: 'Area eliminada correctamente'
+                    message: 'Codigo eliminado correctamente'
                 });
             },
             error: function () {
@@ -506,3 +530,84 @@ function updateEnfermera(){
     });
     
 }
+
+
+function registrarIncidencia(){
+    var enfermera = document.getElementById('buscadorEnfermera');
+    var incidencia = document.getElementById('buscadorIncidencia');
+    var fechaInicio = document.getElementById('fechaInicio');
+    var fechaFin = document.getElementById('fechaFin');    
+    var cubreEnfermera = document.getElementById('buscadorEnfermera2').value;
+
+    /*if (fechaFin=='') {
+        fechaFin="0000-00-00";
+    }*/
+
+    if (cubreEnfermera==0) {
+        cubreEnfermera=null;
+    }
+
+   if(enfermera.value!=null && incidencia.value!=0 && fechaInicio.value!=0){
+        var cadena = "enfermera="+enfermera.value+
+        "&incidencia="+incidencia.value+
+        "&fechaInicio="+fechaInicio.value+
+        "&fechaFin="+fechaFin.value+
+        "&cubreEnfermera="+cubreEnfermera;
+
+       alert(cadena);
+
+        $.ajax({
+            type: "POST",
+            url: "controllers/addIncidencia.php",
+            data: cadena,
+            success: function (r) {
+                alert(r);
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Incidencia Agregada Correctamente'
+                });
+            },
+            error: function (r) {
+                alert(r);
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al agregar la incidencia'
+                });
+            }
+        });
+    }else{
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen datos faltantes'
+        });
+    }
+
+}
+
+
+function eliminarIncidencia(id){
+    document.getElementById('eliminarBtn').onclick = () => {
+        cadena = "id=" + id;
+        $.ajax({
+            type: "POST",
+            url: "controllers/deleteIncidencia.php",
+            data: cadena,
+            success: function (r) {
+                loadListIncidencias();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Incidencia eliminada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al eliminar el registro'
+                });
+            }
+        });
+    }
+}
+
+
+

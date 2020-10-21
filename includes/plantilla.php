@@ -14,29 +14,29 @@
   <meta name="author" content="">
 
   <title>SISTEMA INCIDENCIAS</title>
-
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-  <script src="js/funciones.js"></script>
   <link rel="stylesheet" type="text/css" href="iziToast/iziToast-master/dist/css/iziToast.css">
+  <link rel="stylesheet" type="text/css" href="css/select2.css">
+
+  <!-- TOAST Y CHARTJS -->
   <script src="iziToast/iziToast-master/dist/js/iziToast.min.js"></script>
+  <script type="text/javascript" src="vendor/chart.js/Chart.min.js"></script>
+  <script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+  <script type="text/javascript" src="js/select2.js"></script>
+  <script src="js/funciones.js"></script>
+
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
-
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
       <!-- Sidebar - Brand -->
-
         <div class="sidebar-brand d-flex align-items-center justify-content-center">
           <a href="index.php">
             <img src="img/hospital-logo.png" width="50px" height="50px">
@@ -47,7 +47,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="index.php">
@@ -115,7 +114,6 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        HISTORIAL  
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -140,7 +138,7 @@
       </li>
       -->
       <!-- Nav Item - Charts -->
-<li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Historial de Incidencias</span>
@@ -148,15 +146,14 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="index.php">Ver incidencias </a>
-            <a class="collapse-item" href="index.php">Incidencias Por Mes</a>
+            <a class="collapse-item" href="verIncidencias.php">Ver Incidencias</a>
             <a class="collapse-item" href="index.php">Incidencias Por Area</a>
             <a class="collapse-item" href="index.php">Incidencias Por Enfermera</a>
             <a class="collapse-item" href="index.php">Incidencias Por Turno</a>         <a class="collapse-item" href="index.php">Incidencias Año Individual</a>
 
           </div>
         </div>
-
+    </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -182,8 +179,8 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
-          <!-- Topbar Search -->
+<!--
+           Topbar Search 
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -194,7 +191,7 @@
               </div>
             </div>
           </form>
-
+-->
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -218,15 +215,13 @@
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+           <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
+                <span class="badge badge-danger badge-counter">1</span>
+              </a>-->
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <!--<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -264,18 +259,18 @@
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
+              </div>-->
             </li>
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!--<li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
+
+                <span class="badge badge-danger badge-counter">1</span>
+              </a>-->
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <!--<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
@@ -320,18 +315,17 @@
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
+              </div>-->
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
+            
+            <!--<li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Laura Calles</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
-              <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -352,7 +346,7 @@
                 </a>
               </div>
             </li>
-
+            -->
           </ul>
 
         </nav>

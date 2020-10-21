@@ -67,9 +67,18 @@
                   Vespertino
                 </option>
                 <option>
-                  Nocturno
+                  Nocturno A
+                </option>
+                  <option>
+                  Nocturno B
                 </option>
                 <option>
+                  NOCTURNO MIXTO
+                </option>
+                <option>
+                  SEXTA VELADA
+                </option>
+                  <option>
                   Jornadas Especiales
                 </option>
               </select>
