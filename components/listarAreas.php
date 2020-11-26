@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_row($resultC)) { // por cada fila itera
     ?>
                 <tr>
                   <td><?php echo $row[1]; ?></td>
-                  <td><?php echo getEnfermerasArea($conexion,$row[0])?></td>
+                  <!--<td><?php echo getEnfermerasArea($conexion,$row[0])?></td>-->
                   <td>
                     <buttom type="buttom" class="btn btn-warning" data-toggle="modal" data-target="#editarAreaModal"
                     onclick="cargaDataArea('<?php echo $data ?>')">Editar</buttom>

@@ -23,7 +23,7 @@ require_once 'includes/plantilla.php';
                 <thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>Enfermeras</th>
+                  <!--<th>Enfermeras</th>-->
                   <th >Opciones</th>
                 </tr>
                 </thead>

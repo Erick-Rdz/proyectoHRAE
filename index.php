@@ -17,6 +17,7 @@
 <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
+
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -103,7 +104,14 @@
             </div>
           </div>
 
-<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+
+</head>
+<body>
+
+
+
+<div id="" class="chart-container" style="position: relative; height:70vh; width:55vw">
+      <center><h1 class="h3 mb-0 text-gray-800">Tabla Distribucion Enfermeras Mes Actual</h1></center><br>
     <canvas id="myChart"></canvas>
 </div>
 

@@ -152,6 +152,8 @@ function loadlistCodigos(){
 }
 
 function loadListEnfermeras(){
+    let buscar = document.getElementById('buscarEnfermera').value;
+
      div = document.getElementById('listadoEnfermeras');
      var xhr = new XMLHttpRequest();
 
@@ -159,8 +161,13 @@ function loadListEnfermeras(){
          div.innerHTML = this.response;
      };
 
-     xhr.open('GET', 'components/listarEnfermeras.php', true);
-     xhr.send();
+     if (buscar!='') {
+        xhr.open('GET', 'components/listarEnfermeras.php?buscarEnfermera='+buscar, true);
+        xhr.send();
+    }else{    
+         xhr.open('GET', 'components/listarEnfermeras.php', true);
+         xhr.send();
+    }
 
 }
 
@@ -316,15 +323,16 @@ function cargarDataCatalogo(data) {
 
 //CARGA DE LOS DATOS EN EL MODAL
 function cargarDataEnfermera(data) {
-    //ejemplo: 15||1||AMO2035 ||ERICK RODRIGUEZ||Vespertino||2020-09-01||Seleccionar..||2020-09-01||3||COVID 2
+    console.log(data);
+    //ejemplo: 8||2||B-1234||PRUEBAUPDATE||2020-10-14||Femenino||2020-10-07||JORNADAS ESPECIALES||3
     let dataCodigo = data.split('||');
     document.getElementById('idEnfermera_UP').value = dataCodigo[0];
     document.getElementById('idcodigoEnfermera_UP').value = dataCodigo[1];
     document.getElementById('nombreEnfermera_UP').value = dataCodigo[3];
-    document.getElementById('turno_UP').value = dataCodigo[4];
-    document.getElementById("fechaNa_UP").value=dataCodigo[5];
-    document.getElementById('sexo_UP').value = dataCodigo[6];
-    document.getElementById('fechaIngreso_UP').value = dataCodigo[7];
+    document.getElementById('turno_UP').value= dataCodigo[7];
+    document.getElementById("fechaNa_UP").value=dataCodigo[4];
+    document.getElementById('sexo_UP').value = dataCodigo[5];
+    document.getElementById('fechaIngreso_UP').value = dataCodigo[6];
     document.getElementById('area_UP').value = dataCodigo[8];
 }
 
@@ -405,24 +413,48 @@ function updateCatalago(){
 
 
 function agregarEnfermera(){
+    var activa = document.getElementById('switchActivo').checked;
     var codigo = document.getElementById('codigoEnfermera').value;
     var nombre = document.getElementById('nombreEnfermera').value;
     var fechaNa = document.getElementById('fechaNa').value;
     var sexo = document.getElementById('sexo').value;
     var turno = document.getElementById('turno').value;
+    var desdeTurno = document.getElementById('desdeTurno').value;
     var area = document.getElementById('area').value;
+    var desdeArea = document.getElementById('desdeArea').value;
     var fechaIngreso = document.getElementById('fechaIngreso').value;
 
-    cadena = "codigo="+codigo+
+
+    if (activa==false && codigo!='' && nombre!='' && isNaN(nombre) && fechaNa!="" && sexo!='' && fechaIngreso!='' ){
+         cadena = "codigo="+codigo+
+            "&nombre=" +nombre+
+            "&fechaNa="+fechaNa+
+            "&sexo="+sexo+
+            "&fechaIngreso="+fechaIngreso+
+            "&activa=FALSE";;
+
+    }else if (activa==true && codigo!='' && nombre!='' && isNaN(nombre) && fechaNa!="" && sexo!='' && fechaIngreso!='' && turno!=''
+        && desdeTurno!='' && area!='' && desdeArea!=''){
+
+        cadena = "codigo="+codigo+
             "&nombre=" +nombre+
             "&fechaNa="+fechaNa+
             "&sexo="+sexo+
             "&turno="+turno+
+            "&desdeTurno="+desdeTurno+
             "&area="+area+
-            "&fechaIngreso="+fechaIngreso;
+            "&desdeArea="+desdeArea+
+            "&fechaIngreso="+fechaIngreso+
+            "&activa=TRUE";
 
-    if (codigo!='' && nombre!='' & isNaN(nombre)
-     && fechaNa!="" && sexo!='' && turno!='' && area!='' && fechaIngreso!=''){
+    }else{
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+        return;
+    }
+
         $.ajax({
         type:"POST",
         url:"controllers/addEnfermera.php",
@@ -433,7 +465,7 @@ function agregarEnfermera(){
                     title: 'Bien',
                     message: 'Enfermera Agregada correctamente'
                 });
-                  loadListEnfermeras();
+                loadListEnfermeras();
             }else{
                 iziToast.error({
                 title: 'Error',
@@ -442,14 +474,7 @@ function agregarEnfermera(){
             }
         }
     })
-    }else{
-        iziToast.error({
-            title: 'Error',
-            message: 'Existen campos incorrectos'
-        });
-
-    }
-
+    
 }
 
 
@@ -488,7 +513,8 @@ function updateEnfermera(){
     var area = document.getElementById('area_UP').value;
     var fechaIngreso = document.getElementById('fechaIngreso_UP').value;
 
-
+    
+    
     //VALIDACION NO NUMBER NO NULL
 /*   if (codigo!='' && nombre!='' & isNaN(nombre)
      && fechaNa!="" && sexo!='' && turno!='' && area!='' && fechaIngreso!=''){
@@ -499,6 +525,8 @@ function updateEnfermera(){
          return;
     }
 */
+
+
     var cadena ="idEnfermera="+idEnfermera+
             "&codigo="+codigo+
             "&nombre=" +nombre+
@@ -507,8 +535,7 @@ function updateEnfermera(){
             "&turno="+turno+
             "&area="+area+
             "&fechaIngreso="+fechaIngreso;
-
-
+        
     $.ajax({
         type: "POST",
         url: "controllers/updateEnfermera.php",
@@ -554,21 +581,18 @@ function registrarIncidencia(){
         "&fechaFin="+fechaFin.value+
         "&cubreEnfermera="+cubreEnfermera;
 
-       alert(cadena);
 
         $.ajax({
             type: "POST",
             url: "controllers/addIncidencia.php",
             data: cadena,
             success: function (r) {
-                alert(r);
                 iziToast.success({
                     title: 'Bien',
                     message: 'Incidencia Agregada Correctamente'
                 });
             },
             error: function (r) {
-                alert(r);
                 iziToast.error({
                     title: 'Error',
                     message: 'Hubo un problema al agregar la incidencia'
@@ -608,6 +632,277 @@ function eliminarIncidencia(id){
         });
     }
 }
+function eliminarIncidenciaAPA(id){
+    document.getElementById('eliminarBtn').onclick = () => {
+        cadena = "id=" + id;
+        $.ajax({
+            type: "POST",
+            url: "controllers/deleteIncidencia.php",
+            data: cadena,
+            success: function (r) {
+                loadListIncidenciasPA();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Incidencia eliminada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al eliminar el registro'
+                });
+            }
+        });
+    }
+}
+
+
+function loadListIncidenciasPorEnfermera(){
+    var enfermera = document.getElementById('buscadorEnfermeraPY').value;
+    var year = document.getElementById('yearPY').value;
+
+    if(year!=""){
+        if (isNaN(year)) {
+              iziToast.error({
+                    title: 'Error',
+                    message: 'Verifica tus datos'
+                });
+            return;
+        }
+    }
+     div = document.getElementById('listadoIncidenciasPY');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarIncidenciasEnfermera.php?enfermeraPY='+enfermera+'&YearPY='+year, true);
+     xhr.send();
+}
+
+function loadListIncidenciasPA(){
+    var area = document.getElementById('buscadorAreaPA').value;
+    var year = document.getElementById('yearPA').value;
+
+    if(year!=""){
+        if (isNaN(year)) {
+              iziToast.error({
+                    title: 'Error',
+                    message: 'Verifica tus datos'
+                });
+            return;
+        }
+    }
+     div = document.getElementById('listadoIncidenciasPA');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarIncidenciasPA.php?AreaPA='+area+'&YearPA='+year, true);
+     xhr.send();
+}
+
+function loadListIncidenciasPT(){
+    var turno = document.getElementById('buscadorturnoPT').value;
+    var year = document.getElementById('yearPT').value;
+
+    if(year!=""){
+        if (isNaN(year)) {
+              iziToast.error({
+                    title: 'Error',
+                    message: 'Verifica tus datos'
+                });
+            return;
+        }
+    }
+     div = document.getElementById('listadoIncidenciasPA');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarIncidenciasPT.php?TurnoPT='+turno+'&YearPT='+year, true);
+     xhr.send();
+}
+
+
+function loadListDistribucionAreas(){
+     div = document.getElementById('listadoDistribucion');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarDistribucionPorAreas.php', true);
+     xhr.send();
+}
 
 
 
+function loadListDistribucionTurnos(){
+     div = document.getElementById('listadoDistribucionTurnos');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarDistribucionPorTurnos.php', true);
+     xhr.send();
+}
+
+
+
+function loadlistRegistrosAreas(){
+     div = document.getElementById('listadoRegistros');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarRegistrosAreas.php', true);
+     xhr.send();
+}
+
+function agregarRegistroArea(){
+
+    var fechaInicio = document.getElementById('fechaInicioRegistroArea').value;
+    var fechaFin = document.getElementById('fechaFinRegistroArea').value;
+    var area = document.getElementById('areaRegistroArea').value;
+    var enfermera = document.getElementById('enfermeraRegistroArea').value;
+
+    cadena = "fechaInicio="+fechaInicio+"&fechaFin="+fechaFin+"&area="+area+"&enfermera="+enfermera;
+
+    if (fechaInicio!='' && fechaFin!='' && area!='' && enfermera!=''){
+        $.ajax({
+        type:"POST",
+        url:"controllers/addRegistroArea.php",
+        data:cadena,
+        success:function(r){
+            if (r==1){
+                    iziToast.success({
+                    title: 'Bien',
+                    message: 'Registro Agregado correctamente'
+                });
+                  loadlistRegistrosAreas();
+            }else{
+                iziToast.error({
+                title: 'Error',
+                message: 'Error al insertar Registro'
+                });
+            }
+        }
+    })
+    }else{
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+    }
+}
+
+function eliminarRegistroArea(id){
+    document.getElementById('eliminarBtn').onclick = () => {
+        cadena = "id=" + id;
+        $.ajax({
+            type: "POST",
+            url: "controllers/deleteRegistroArea.php",
+            data: cadena,
+            success: function (r) {
+                loadlistRegistrosAreas();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Registro eliminado correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al eliminar el registro'
+                });
+            }
+        });
+    }
+
+}
+
+
+function loadlistRegistroTurnos(){
+     div = document.getElementById('listadoRegistrosTurnos');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarRegistrosTurnos.php', true);
+     xhr.send();
+}
+
+function eliminarRegistroTurno(id){
+    document.getElementById('eliminarBtn').onclick = () => {
+        cadena = "id=" + id;
+        $.ajax({
+            type: "POST",
+            url: "controllers/deleteRegistroTurno.php",
+            data: cadena,
+            success: function (r) {
+                loadlistRegistroTurnos();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Registro eliminado correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al eliminar el registro'
+                });
+            }
+        });
+    }
+
+}
+
+
+function agregarRegistroTurno(){
+    var fechaInicio = document.getElementById('fechaInicioRegistroTurno').value;
+    var fechaFin = document.getElementById('fechaFinRegistroTurno').value;
+    var turno = document.getElementById('turnoRegistroTurno').value;
+    var enfermera = document.getElementById('enfermeraRegistroTurno').value;
+
+    cadena = "fechaInicio="+fechaInicio+"&fechaFin="+fechaFin+"&turno="+turno+"&enfermera="+enfermera;
+
+    if (fechaInicio!='' && fechaFin!='' && turno!='' && enfermera!=''){
+        $.ajax({
+        type:"POST",
+        url:"controllers/addRegistroTurno.php",
+        data:cadena,
+        success:function(r){
+            if (r==1){
+                    iziToast.success({
+                    title: 'Bien',
+                    message: 'Registro Agregado correctamente'
+                });
+                  loadlistRegistroTurnos();
+            }else{
+                iziToast.error({
+                title: 'Error',
+                message: 'Error al insertar Registro'
+                });
+            }
+        }
+    })
+    }else{
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+    }
+}

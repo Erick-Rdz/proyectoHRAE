@@ -61,18 +61,27 @@
             <div class="form-group">
               <label>Turno  </label>
               <select class="form-control input-sm" id="turno_UP">
-                <option>
-                  Matutino
+                <option value="MATUTINO">
+                  MATUTINO
                 </option>
-                <option>
-                  Vespertino
+                <option value="VESPERTINO">
+                  VESPERTINO
                 </option>
-                <option>
-                  Nocturno
+                <option value="NOCTURNO A">
+                  NOCTURNO A
                 </option>
-                <option>
-                  Jornadas Especiales
+                  <option value="NOCTURNO B">
+                  NOCTURNO B
                 </option>
+                <option value="NOCTURNO MIXTO">
+                  NOCTURNO MIXTO
+                </option>
+                <option value="SEXTA VELADA">
+                  SEXTA VELADA
+                </option>
+                  <option value="JORNADAS ESPECIALES">
+                  JORNADAS ESPECIALES
+                </option>              
               </select>
             </div>
           </div>

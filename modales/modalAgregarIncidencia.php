@@ -15,9 +15,6 @@
           <div class="form-group">
           <label for="">Nombre</label>
           <input type="text" name="" class="form-control" id="nombreCatalago">
-          <label for="programada">Programada</label><br>
-          <input type="checkbox" name="programada" value="SI" class="">SI
-          <input type="checkbox" name="programada" value="NO" class="">NO
           </div>
 
         </form>

@@ -38,7 +38,7 @@ function graficaIndex(data){
 
   var graficar = document.getElementById('myChart');
         var grafico = new Chart(graficar, {
-            type: 'pie',
+            type: 'doughnut',
             data: chartdata,
             options: {
                 responsive: true,

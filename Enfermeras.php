@@ -17,6 +17,8 @@ require_once 'includes/plantilla.php';
           <div class="card shadow mb-4" >
             <div class="card-header py-3" >
               <h6 class="m-0 font-weight-bold text-primary">Enfermeras</h6>
+              <br><input type="text" name="" id="buscarEnfermera" class="form-control input-sm" placeholder="Buscar Enfermera" onkeypress="pulsar(event);">
+
             </div>
             <div class="card-body" style="width: 100%; text-align: center">
               <div class="table-responsive">
@@ -25,10 +27,10 @@ require_once 'includes/plantilla.php';
                     <tr>
                       <th>Codigo</th>
                       <th>Nombre</th>
-                      <th>Turno</th>
-                      <th>Fecha Nacimiento</th>                      
-                      <th>Sexo</th>
+                      <th>Fecha Nacimiento</th>
+                      <th>Sexo</th>                      
                       <th>Fecha Ingreso</th>
+                      <th>Turno</th>
                       <th>Area</th>
                       <th>Opciones</th>
                     </tr>
@@ -48,6 +50,14 @@ require_once 'includes/plantilla.php';
         loadListEnfermeras(); // carga lista de consolas
 
     }, false);
+</script>
+
+<script type="text/javascript">
+  function pulsar(e) {
+    if (e.keyCode === 13 && !e.shiftKey) {
+        loadListEnfermeras();
+    }
+}
 </script>
 
 

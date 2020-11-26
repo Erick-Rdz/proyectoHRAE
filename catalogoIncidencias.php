@@ -15,8 +15,6 @@ require_once 'includes/plantilla.php';
         <h1 class="h3 mb-0 text-gray-800">Catalogo Incidencias</h1>
         <buttom type="buttom" class="btn btn-primary" data-toggle="modal" data-target="#agregarIncidenciaCatalago">Agregar</buttom>
  </div>
-
-
         <div class="card" style="width: 100%; text-align: center;">
             <div class="card-body">
               <table class="table table-bordered table-hover">

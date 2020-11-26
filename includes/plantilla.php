@@ -41,7 +41,7 @@
           <a href="index.php">
             <img src="img/hospital-logo.png" width="50px" height="50px">
           </a>
-          <h1>HRAE</h1>
+          <h1>HRAEV</h1>
         </div>
 
 
@@ -85,6 +85,53 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Historial de Distribucion</span>
+        </a>
+        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Opciones:</h6>
+            <a class="collapse-item" href="distribucionPorAreas.php">Distribucion Por Area</a>
+            <a class="collapse-item" href="distribucionPorTurnos.php">Distribucion Por Turno </a>
+     
+          </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Historial de Incidencias</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Opciones:</h6>
+            <a class="collapse-item" href="graficaIncidenciasPorMes.php">Grafica Incidencias</a>
+            <a class="collapse-item" href="verIncidencias.php">Ver Incidencias</a>
+            <a class="collapse-item" href="verIncidenciasPA.php">Incidencias Por Area</a>
+            <a class="collapse-item" href="verIncidenciasEnfermera.php">Incidencias Por Enfermera</a>
+            <a class="collapse-item" href="verIncidenciasPT.php">Incidencias Por Turno</a>
+          </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages3">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Enfermeras</span>
+        </a>
+        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Opciones:</h6>
+            <a class="collapse-item" href="Enfermeras.php">Enfermeras</a>
+            <a class="collapse-item" href="registroArea.php">Agregar Registro Area</a>
+            <a class="collapse-item" href="registroTurno.php">Agregar Registro Turno </a>                      
+          </div>
+        </div>
+    </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="areas.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Areas</span></a>
@@ -103,18 +150,14 @@
       </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="Enfermeras.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Ver enfermeras</span></a>
-      </li>
+
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-      </div>
+      <!--<div class="sidebar-heading">
+      </div>-->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <!--
@@ -138,22 +181,8 @@
       </li>
       -->
       <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Historial de Incidencias</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="verIncidencias.php">Ver Incidencias</a>
-            <a class="collapse-item" href="index.php">Incidencias Por Area</a>
-            <a class="collapse-item" href="index.php">Incidencias Por Enfermera</a>
-            <a class="collapse-item" href="index.php">Incidencias Por Turno</a>         <a class="collapse-item" href="index.php">Incidencias Año Individual</a>
 
-          </div>
-        </div>
-    </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
