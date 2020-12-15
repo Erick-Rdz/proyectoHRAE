@@ -46,7 +46,7 @@
                         <button class="btn btn-primary" style="margin-top:10%" onclick="ObtenerDatosPorArea();">Filtrar</button>
                       </div>
                     </div>
-                      <div id="" class="chart-container" style="height:40vh; width:40vw; margin-left: 20%">
+                      <div id="" class="chart-container" style="height:65vh; width:65vw; margin-left: 5%">
                         <canvas id="myChart"></canvas>
                     </div>
                     <div class="card-body">

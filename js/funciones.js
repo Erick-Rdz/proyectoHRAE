@@ -591,6 +591,8 @@ function registrarIncidencia(){
                     title: 'Bien',
                     message: 'Incidencia Agregada Correctamente'
                 });
+                document.getElementById('btn_RegistrarIncidencia').disabled=true;
+                redireccionar();
             },
             error: function (r) {
                 iziToast.error({
@@ -606,7 +608,9 @@ function registrarIncidencia(){
         });
     }
 
-}
+}function redireccionar() {
+    setTimeout("location.href='verIncidencias.php'", 2500);
+  }
 
 
 function eliminarIncidencia(id){

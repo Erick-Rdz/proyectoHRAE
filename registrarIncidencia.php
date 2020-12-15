@@ -94,7 +94,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" onclick="registrarIncidencia();">Registrar</button>
+                  <button type="submit" class="btn btn-primary" id="btn_RegistrarIncidencia" onclick="registrarIncidencia();">Registrar</button>
                 </div>
             </div>
             <!-- /.card -->

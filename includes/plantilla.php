@@ -107,11 +107,11 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="graficaIncidenciasPorMes.php">Grafica Incidencias</a>
             <a class="collapse-item" href="verIncidencias.php">Ver Incidencias</a>
-            <a class="collapse-item" href="verIncidenciasPA.php">Incidencias Por Area</a>
+            <a class="collapse-item" href="graficaIncidenciasPorMes.php">Grafica Incidencias</a>
             <a class="collapse-item" href="verIncidenciasEnfermera.php">Incidencias Por Enfermera</a>
-            <a class="collapse-item" href="verIncidenciasPT.php">Incidencias Por Turno</a>
+            <!--<a class="collapse-item" href="verIncidenciasPA.php">Incidencias Por Area</a>
+            <a class="collapse-item" href="verIncidenciasPT.php">Incidencias Por Turno</a>-->
           </div>
         </div>
     </li>
